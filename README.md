@@ -1,9 +1,10 @@
-fake-armv7l
+fake-uname
 ===========
+on some linux kernel,run chroot to a new linux rootfs,will get "kernel too old" error
+
 
 This is a LD_PRELOAD library that hooks the uname function and changes the
-machine type to be 'armv7l'. The string is intentionally hardcoded for
-simplicity.
+release  to be the environment "MYKERVER". if no environment MYKERVER ,set release to 5.0
 
 This exists to allow one to force pip to use a particular machine type when
 creating wheels.
@@ -11,7 +12,7 @@ creating wheels.
 Usage
 -----
 
-LD_PRELOAD=/path/to/libfakearmv7l.so [command]
+LD_PRELOAD=/path/to/libfakeuname.so [command]
 
 Credit
 ------
