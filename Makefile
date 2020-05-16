@@ -1,16 +1,18 @@
 
 .PHONY: all clean install
 
-all: libfakearmv7l.so ;
+TARGET=libfakeuname.so
+
+all: $TARGET ;
 
 fakearm.o: fakearm.c
-	gcc -Wall -fPIC -g -c -DLINUX -Wall fakearm.c
+	gcc -Wall -fPIC -g -c -DLINUX -Wall fakeuname.c
 
 libfakearmv7l.so: fakearm.o
-	gcc -shared -rdynamic -Wl,-soname,libfakearmv7l.so -o libfakearmv7l.so fakearm.o -ldl
+	gcc -shared -rdynamic -Wl,-soname,$TARGET -o TARGET fakeuname.o -ldl
 
 clean:
-	rm fakearm.o libfakearmv7l.so
+	rm fakeuname.o $TARGET
 	
 install:
-	cp libfakearmv7l.so /usr/local/lib/libfakearmv7l.so
+	cp $TARGET /usr/local/lib/$TARGET
