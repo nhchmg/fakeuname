@@ -12,6 +12,9 @@
 #ifndef RTLD_NEXT
   #define RTLD_NEXT      ((void *) -1l)
 #endif
+
+#define MY_KERNEL_VERSION "MYKERVER"
+#define DEFAULT_VERSION   "5.0
  
 typedef int (*uname_t) (struct utsname * buf);
 static void *getLibFunc(const char *funcname)
@@ -38,7 +41,16 @@ int uname(struct utsname *buf)
     ret = real_uname((struct utsname *) buf);
 
     memset(buf->machine, 0, sizeof(buf->machine));
-    strncpy(buf->machine, "armv7l", sizeof(buf->machine)-1);
+ 
+    char *p;
+    if(p = getenv(MY_KERNEL_VERSION) )
+    {
+        strncpy(buf->release, p, sizeof(buf->release)-1);
+    }
+    else
+    {
+        strncpy(buf->release, DEFAULT_VERSION, sizeof(buf->release)-1);
+    }
 
     return ret;
 }
