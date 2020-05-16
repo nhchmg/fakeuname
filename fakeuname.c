@@ -14,7 +14,7 @@
 #endif
 
 #define MY_KERNEL_VERSION "MYKERVER"
-#define DEFAULT_VERSION   "5.0
+#define DEFAULT_VERSION   "5.0"
  
 typedef int (*uname_t) (struct utsname * buf);
 static void *getLibFunc(const char *funcname)
